@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "polaroid-to-instaram"
+version = "0.1.0"
+description = ""
+authors = ["Gaston Abril Rotger <abril.rotger@gmail.com>"]
+readme = "README.md"
+packages = [{include = "polaroid_to_instaram"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+Pillow = "^10.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
