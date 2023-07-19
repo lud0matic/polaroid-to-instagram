@@ -111,7 +111,7 @@ Back then, I used Photoshop (I didn't know Python) to recreate the format. I onl
 
 Maybe I will add this options.
 
-- [x] 9:16 Aspect Ratio
+- [x] ~~9:16 Aspect Ratio~~
 - [ ] Spectra Format
 - [ ] Round Frame Format
 - [ ] Go Film Format
