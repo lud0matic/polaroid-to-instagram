@@ -2,6 +2,7 @@ from PIL import Image, ImageFilter
 import argparse, os, random, string
 
 # Instagram Aspect Ratio
+VERTICAL_9_16 = (1080, 1920)
 VERTICAL_4_5 = (1080, 1350)
 SQUARE = (1080, 1080)
 
@@ -10,9 +11,11 @@ parser = argparse.ArgumentParser()
 parser.add_argument("file", action="store", help="path of picture to transform")
 parser.add_argument("-nb", "--no-blur", action="store_true", dest="no_blur", default=False, help="blur background disable | default: Enable")
 parser.add_argument("-sq","--square", action="store_true",dest="square",default=False, help="1:1 aspect ratio | default: 4:5 aspect ratio")
+parser.add_argument("-st", "--stories", action="store_true", dest="stories", default=False, help="9:16 aspect ratio | default: 4:5 aspect ratio")
 args = parser.parse_args()
 no_blur = args.no_blur
 square = args.square
+stories = args.stories
 
 FILE_NAME, FILE_EXTENTION = os.path.splitext(args.file)
 RANDOM_STRING = ''.join(random.choices(string.ascii_lowercase + string.digits, k=6))
@@ -23,12 +26,18 @@ def original_photo():
       original_photo = Image.open(args.file)
       return original_photo      
 
-# New blank image with 1:1 or 4:5 aspect ratio
+# New blank image with 1:1, 4:5 or 9:16 aspect ratio
 def blank_image():
-      if args.square == True:
+      if square == True:
             blank_image = Image.new("RGB", SQUARE, color=0)
             blank_image.paste(original_photo(),(-342,-282))    
             return blank_image
+      
+      elif stories == True:
+            blank_image = Image.new("RGB", VERTICAL_9_16, color=0)            
+            blank_image.paste(original_photo().resize((3530,4316)),(-1176,-920))    
+            return blank_image
+      
       else:
             blank_image = Image.new("RGB",VERTICAL_4_5, color=0)
             blank_image.paste(original_photo(),(-342,-219))
@@ -80,11 +89,34 @@ def no_blur_11():
       except Exception:
             print("Error: Check the file/directory path and try again")
 
+def blur_916():
+      try:
+            blur = blur_backgroud(blank_image()).copy()
+            blur.paste(original_photo_resize(),(170,510))
+            blur.save(FILE_EXPORT_NAME)
+            print(f"Image save: {FILE_EXPORT_NAME}")
+      except Exception:
+            print("Error: Check the file/directory path and try again")
+
+def no_blur_916():
+      try:
+            no_blur = blank_image().copy()
+            no_blur.paste(original_photo_resize(),(170,510))
+            no_blur.save(FILE_EXPORT_NAME)
+            print(f"Image save: {FILE_EXPORT_NAME}")
+      except Exception:
+            print("Error: Check the file/directory path and try again")
+
+
 if __name__ == "__main__":
       if square == True and no_blur == True:
             no_blur_11()
       elif square == True:
             blur_11()
+      elif stories == True and no_blur == True:
+            no_blur_916()
+      elif stories == True:
+            blur_916()
       elif no_blur == True:
             no_blur_45()
       else:

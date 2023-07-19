@@ -69,5 +69,5 @@ tests = ["check-manifest", "coverage", "defusedxml", "markdown2", "olefile", "pa
 
 [metadata]
 lock-version = "2.0"
-python-versions = "^3.11"
+python-versions = "3.11"
 content-hash = "5d201cc52ec99e20a789783b28294b51e2f92d40b69d6493061e00129848520c"

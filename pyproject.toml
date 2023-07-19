@@ -7,8 +7,8 @@ readme = "README.md"
 packages = [{include = "polaroid_to_instaram"}]
 
 [tool.poetry.dependencies]
-python = "^3.11"
-Pillow = "^10.0.0"
+python = "3.11"
+Pillow = "10.0.0"
 
 
 [build-system]
