@@ -15,6 +15,7 @@ A tiny Python script to create a new _instagram-ready_ picture using the polaroi
       - [Technicalities](#technicalities)
       - [Why? ¯\\\_(ツ)\_/¯](#why-_ツ_)
   - [Roadmap](#roadmap)
+  - [Updates](#updates)
 
 ## About
 
@@ -110,11 +111,26 @@ Back then, I used Photoshop (I didn't know Python) to recreate the format. I onl
 
 Maybe I will add this options.
 
-- [ ] 9:16 Aspect Ratio
+- [x] 9:16 Aspect Ratio
 - [ ] Spectra Format
 - [ ] Round Frame Format
 - [ ] Go Film Format
 - [ ] Batch Convertion
+
+## Updates
+
+[19/07/2023] 9:16 Aspect Ratio: Use the flag `-st` and you will get a `1080x1920` photo ready for stories.
+```bash
+python main.py /path_of_your/polaroid/picture.jpg -st
+```
+
+The default behavior is with the blur background. You can use the `-nb` to avoid this.
+
+```bash
+python main.py /path_of_your/polaroid/picture.jpg -st -nb
+```
+
+![Alt text](assets/images/polaroid_024_unombi.JPG)
 
 ---
 
